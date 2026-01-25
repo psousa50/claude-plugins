@@ -8,8 +8,7 @@
   },
   "commands": [
     "./commands/analyze.md",
-    "./commands/update.md",
-    "./commands/commit-msg.md"
+    "./commands/update.md"
   ],
   "agents": [
     "./agents/discovery.md",

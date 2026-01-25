@@ -1,0 +1,13 @@
+{
+  "name": "git",
+  "description": "Git workflow commands",
+  "version": "1.0.0",
+  "author": {
+    "name": "Pedro Sousa",
+    "email": "pedronsousa@gmail.com"
+  },
+  "commands": [
+    "./commands/commit-msg.md"
+  ],
+  "agents": []
+}

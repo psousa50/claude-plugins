@@ -14,6 +14,12 @@
       "source": "./plugins/codebase-analyzer",
       "description": "Analyzes a project and generates CLAUDE.md and skills with project knowledge",
       "version": "1.0.0"
+    },
+    {
+      "name": "git",
+      "source": "./plugins/git",
+      "description": "Git workflow commands",
+      "version": "1.0.0"
     }
   ]
 }
