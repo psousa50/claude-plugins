@@ -18,7 +18,7 @@ Look for:
 - API routes or endpoints
 - Database models or schemas
 
-Generate `.claude/skills/architecture/SKILL.md`:
+Create the folder `.claude/skills/architecture/` and generate `SKILL.md` inside it:
 
 ```markdown
 ---

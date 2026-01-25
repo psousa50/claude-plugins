@@ -21,7 +21,7 @@ Look for:
 - CI config (.github/workflows, .gitlab-ci.yml, etc.)
 - README setup instructions
 
-Generate `.claude/skills/build/SKILL.md`:
+Create the folder `.claude/skills/build/` and generate `SKILL.md` inside it:
 
 ```markdown
 ---

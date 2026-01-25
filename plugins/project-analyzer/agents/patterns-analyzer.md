@@ -20,7 +20,7 @@ Look at:
 - How dependencies are injected or managed
 - Code style (functional vs OOP, etc.)
 
-Generate `.claude/skills/patterns/SKILL.md`:
+Create the folder `.claude/skills/patterns/` and generate `SKILL.md` inside it:
 
 ```markdown
 ---
