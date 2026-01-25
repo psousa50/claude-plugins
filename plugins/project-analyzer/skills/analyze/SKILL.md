@@ -1,3 +1,8 @@
+---
+name: analyze
+description: Analyzes a project and generates CLAUDE.md and skills with project knowledge
+---
+
 # Project Analyzer
 
 Analyze the current project and generate comprehensive documentation.
