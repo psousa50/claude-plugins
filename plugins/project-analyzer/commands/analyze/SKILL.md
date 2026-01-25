@@ -15,7 +15,7 @@ Run the following agents in parallel to analyze different aspects of the codebas
 2. **patterns-analyzer** — Analyze coding patterns, conventions, and idioms
 3. **build-analyzer** — Analyze build process, scripts, and development workflow
 
-After all agents complete, create `CLAUDE.md` combining their findings:
+After all agents complete, create `CLAUDE.md` in the **project root directory** (not in .claude/) combining their findings:
 
 ```markdown
 # Project: [name from package.json or directory]
