@@ -6,13 +6,12 @@
   },
   "metadata": {
     "description": "Personal Claude Code plugins",
-    "version": "1.0.0",
-    "pluginRoot": "./plugins"
+    "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "project-analyzer",
-      "source": "project-analyzer",
+      "source": "./plugins/project-analyzer",
       "description": "Analyzes a project and generates CLAUDE.md and skills with project knowledge",
       "version": "1.0.0"
     }
