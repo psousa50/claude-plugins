@@ -1,5 +1,5 @@
 {
-  "name": "project-analyzer",
+  "name": "codebase-analyzer",
   "description": "Analyzes a project and generates CLAUDE.md and skills with project knowledge",
   "version": "1.0.0",
   "author": {
