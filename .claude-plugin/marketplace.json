@@ -4,10 +4,15 @@
     "name": "Pedro Sousa",
     "email": "pedronsousa@gmail.com"
   },
+  "metadata": {
+    "description": "Personal Claude Code plugins",
+    "version": "1.0.0",
+    "pluginRoot": "./plugins"
+  },
   "plugins": [
     {
       "name": "project-analyzer",
-      "source": "./plugins/project-analyzer",
+      "source": "project-analyzer",
       "description": "Analyzes a project and generates CLAUDE.md and skills with project knowledge",
       "version": "1.0.0"
     }
