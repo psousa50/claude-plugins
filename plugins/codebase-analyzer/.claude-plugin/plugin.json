@@ -5,5 +5,20 @@
   "author": {
     "name": "Pedro Sousa",
     "email": "pedronsousa@gmail.com"
-  }
+  },
+  "commands": [
+    "./commands/analyze.md",
+    "./commands/update.md"
+  ],
+  "agents": [
+    "./agents/discovery.md",
+    "./agents/architecture-analyzer.md",
+    "./agents/patterns-analyzer.md",
+    "./agents/build-analyzer.md",
+    "./agents/api-analyzer.md",
+    "./agents/database-analyzer.md",
+    "./agents/tests-analyzer.md",
+    "./agents/frontend-analyzer.md",
+    "./agents/infrastructure-analyzer.md"
+  ]
 }

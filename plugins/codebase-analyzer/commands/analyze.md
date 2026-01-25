@@ -1,9 +1,6 @@
----
-name: analyze
-description: Analyze a project's codebase and generate CLAUDE.md and skills with project knowledge
----
+# /analyze
 
-# Analyze Project
+Analyze a project's codebase and generate CLAUDE.md and skills with project knowledge.
 
 Analyze the current project and generate CLAUDE.md and relevant skills.
 

@@ -1,11 +1,6 @@
----
-name: update
-description: Update existing project skills with latest codebase information
----
+# /update
 
-# Update Project Skills
-
-Update existing skills and CLAUDE.md with the latest codebase information.
+Update existing project skills and CLAUDE.md with the latest codebase information.
 
 ## Instructions
 
