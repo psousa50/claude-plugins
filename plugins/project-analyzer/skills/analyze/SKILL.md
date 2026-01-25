@@ -1,6 +1,6 @@
 ---
 name: analyze
-description: Analyzes a project and generates CLAUDE.md and skills with project knowledge
+description: Analyze a project's codebase and generate CLAUDE.md and skills with project knowledge. Use when exploring a new codebase or setting up project documentation.
 ---
 
 # Project Analyzer
@@ -74,31 +74,28 @@ Create these skills in `.claude/skills/`:
 
 #### `.claude/skills/architecture/SKILL.md`
 ```markdown
-# Architecture Guide
-
-Explain this project's architecture.
-
-## Instructions
+---
+name: architecture
+description: Explain this project's architecture
+---
 [Include specific details about this project's architecture, components, data flow]
 ```
 
 #### `.claude/skills/patterns/SKILL.md`
 ```markdown
-# Code Patterns
-
-Explain the coding patterns and conventions in this project.
-
-## Instructions
+---
+name: patterns
+description: Explain the coding patterns and conventions in this project
+---
 [Include specific patterns, naming conventions, idioms used in this project]
 ```
 
 #### `.claude/skills/build/SKILL.md`
 ```markdown
-# Build & Development
-
-Explain how to build, test, and develop this project.
-
-## Instructions
+---
+name: build
+description: Explain how to build, test, and develop this project
+---
 [Include specific commands, environment setup, common workflows]
 ```
 
