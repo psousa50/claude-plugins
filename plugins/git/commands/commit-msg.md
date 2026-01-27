@@ -8,9 +8,10 @@ Analyse the current git diff and conversation context to generate a single-line 
 
 Run in parallel:
 
-- `git diff --staged` — staged changes (priority)
-- `git diff` — unstaged changes (if nothing staged)
+- `git diff --staged` — staged changes only
 - Review conversation history for context on what was being worked on
+
+If nothing is staged, inform the user and stop.
 
 ### Phase 2: Analyse
 
