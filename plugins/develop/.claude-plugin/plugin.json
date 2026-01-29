@@ -7,6 +7,6 @@
     "email": "pedronsousa@gmail.com"
   },
   "commands": [
-    "./commands/mutate.md"
+    "./commands/mutation-test.md"
   ]
 }
