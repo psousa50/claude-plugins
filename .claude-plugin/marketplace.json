@@ -20,6 +20,12 @@
       "source": "./plugins/git",
       "description": "Git workflow commands",
       "version": "1.0.0"
+    },
+    {
+      "name": "develop",
+      "source": "./plugins/develop",
+      "description": "Development workflow commands",
+      "version": "1.0.0"
     }
   ]
 }
