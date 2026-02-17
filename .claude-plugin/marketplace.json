@@ -26,6 +26,12 @@
       "source": "./plugins/develop",
       "description": "Development workflow commands",
       "version": "1.0.0"
+    },
+    {
+      "name": "tht",
+      "source": "./plugins/tht",
+      "description": "Review Equal Experts Take Home Test submissions",
+      "version": "1.0.0"
     }
   ]
 }

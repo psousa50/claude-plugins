@@ -1,0 +1,12 @@
+{
+  "name": "tht",
+  "description": "Review Equal Experts Take Home Test submissions",
+  "version": "1.0.0",
+  "author": {
+    "name": "Pedro Sousa",
+    "email": "pedronsousa@gmail.com"
+  },
+  "commands": [
+    "./commands/review.md"
+  ]
+}
