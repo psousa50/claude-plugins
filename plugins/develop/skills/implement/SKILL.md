@@ -69,6 +69,10 @@ Write to `docs/reviews/{story-slug}/02-implement.md`:
 
 - `path/to/file` — {what changed}
 
+## Test Corrections
+
+{Only include this section if test files were modified. For each change, explain what was wrong and why it was corrected. Omit this section entirely if no test files were changed.}
+
 ## Test Results
 
 {Paste the final test output showing all tests passing}
@@ -80,6 +84,7 @@ Write to `docs/reviews/{story-slug}/02-implement.md`:
 
 ## Rules
 
-- Do NOT modify test files. If a test seems wrong, note it in the summary but implement to satisfy it.
+- You MAY modify test files only to correct genuine errors (wrong import path, incorrect assertion, broken setup). Do NOT modify tests to make a weak implementation pass.
+- Document every test file change in the "Test Corrections" section with a clear reason.
 - Do NOT add features beyond what tests require.
 - Do NOT stop until all tests pass and linters are clean.
