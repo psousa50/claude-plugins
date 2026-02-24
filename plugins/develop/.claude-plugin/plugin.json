@@ -1,4 +1,5 @@
 {
   "name": "develop",
-  "description": "Development workflow commands"
+  "description": "Development workflow commands",
+  "version": "1.1.0"
 }

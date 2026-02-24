@@ -1,4 +1,5 @@
 {
   "name": "git",
-  "description": "Git workflow commands"
+  "description": "Git workflow commands",
+  "version": "1.0.1"
 }
