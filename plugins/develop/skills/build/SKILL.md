@@ -22,7 +22,11 @@ Read the file at `$ARGUMENTS`. Extract:
 - API contracts (request/response examples)
 - User flows
 
-### 2. Learn the Project
+### 2. Load Shared Patterns
+
+Invoke the `develop:patterns` skill. These rules apply to everything written in this phase.
+
+### 3. Learn the Project
 
 Before writing anything, understand the project's conventions:
 
@@ -32,7 +36,7 @@ Before writing anything, understand the project's conventions:
 - Discover the available commands for testing, linting, and formatting by exploring project configuration files
 - Identify test utilities, fixtures, factories, or helpers already in the codebase
 
-### 3. Write Tests
+### 4. Write Tests
 
 For each acceptance criterion, write test cases following the project's established conventions:
 
@@ -40,23 +44,23 @@ For each acceptance criterion, write test cases following the project's establis
 - Same mocking approach, utilities, and assertion style
 - Tests may reference classes, functions, and modules that do not exist yet — that is expected
 
-### 4. Implement
+### 5. Implement
 
 Follow the project's established architecture. Implement in dependency order — create things that other things depend on first.
 
 Write the minimum code to satisfy the tests. No gold-plating, no extra methods, no speculative features.
 
-### 5. Run Tests
+### 6. Run Tests
 
 Run the project's test command. All tests must pass — both the new ones and existing ones.
 
 If tests fail, read the error output and decide: fix the implementation, or fix the test if it is genuinely wrong. Iterate until all tests pass.
 
-### 6. Run Linters
+### 7. Run Linters
 
 Run the project's lint and type-check commands. Fix any violations.
 
-### 7. Write Summary
+### 8. Write Summary
 
 Derive `story-slug` from the story filename. Create the directory `docs/reviews/{story-slug}/` if it does not exist.
 
