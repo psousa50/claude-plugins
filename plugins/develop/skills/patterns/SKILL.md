@@ -20,3 +20,4 @@ These patterns apply to all code written or modified by the story pipeline skill
 
 - Never use `patch`, `mock.patch`, `vi.mock`, `jest.mock`, or any module-level mocking. Use dependency injection and constructor-level mocks instead.
 - Only mock dependencies that are explicitly injected — never mock a module or file import directly.
+- Do NOT reference AC names or numbers (e.g. "AC1", "Acceptance Criteria 2") in test names or descriptions — tests should describe behaviour, not story structure.
