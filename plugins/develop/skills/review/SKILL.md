@@ -80,7 +80,7 @@ Evaluate the code against each of these categories:
 
 ### 6. Write Report
 
-Derive `story-slug` from the story filename. Write to `docs/reviews/{story-slug}/03-review.md`:
+Derive `story-slug` from the story filename. Write to `docs/reviews/{story-slug}/02-review.md`:
 
 ```markdown
 # Code Review

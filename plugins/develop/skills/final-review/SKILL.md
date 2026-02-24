@@ -18,8 +18,8 @@ Produce a final human-readable review report after all fixes have been applied. 
 Derive `story-slug` from the story filename. Read:
 
 - The story file at `$ARGUMENTS` — for acceptance criteria
-- `docs/reviews/{story-slug}/03-review.md` — previous review findings
-- `docs/reviews/{story-slug}/04-fix.md` — what was fixed (if it exists)
+- `docs/reviews/{story-slug}/02-review.md` — previous review findings
+- `docs/reviews/{story-slug}/03-fix.md` — what was fixed (if it exists)
 
 ### 2. Learn the Project
 
@@ -46,7 +46,7 @@ Run the project's test command. Confirm all tests pass.
 
 ### 6. Write Final Report
 
-Write to `docs/reviews/{story-slug}/05-final-review.md`:
+Write to `docs/reviews/{story-slug}/04-final-review.md`:
 
 ```markdown
 # Final Review

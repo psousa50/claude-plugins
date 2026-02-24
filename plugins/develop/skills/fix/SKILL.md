@@ -15,9 +15,9 @@ Read a code review report and apply all necessary fixes. Critical findings are m
 
 ### 1. Find the Review Report
 
-Derive `story-slug` from the story filename. Read `docs/reviews/{story-slug}/03-review.md`.
+Derive `story-slug` from the story filename. Read `docs/reviews/{story-slug}/02-review.md`.
 
-If the report status is `PASS`, there is nothing to fix. Write a brief summary to `docs/reviews/{story-slug}/04-fix.md` noting no fixes were needed, and stop.
+If the report status is `PASS`, there is nothing to fix. Write a brief summary to `docs/reviews/{story-slug}/03-fix.md` noting no fixes were needed, and stop.
 
 ### 2. Learn the Project
 
@@ -54,10 +54,10 @@ Run the project's lint and type-check commands. Fix any issues introduced by the
 
 ### 7. Write Summary
 
-Write to `docs/reviews/{story-slug}/04-fix.md`:
+Write to `docs/reviews/{story-slug}/03-fix.md`:
 
 ```markdown
-# Phase 4: Fixes Applied
+# Phase 3: Fixes Applied
 
 **Story:** {story file path}
 **Date:** {ISO date}
