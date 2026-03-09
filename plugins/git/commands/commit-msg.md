@@ -6,12 +6,13 @@ Generate a single-line commit message based on the conversation context, using t
 
 ### Phase 1: Gather Context
 
-Run in parallel:
+1. Review the full conversation history — this is the primary source of intent
+2. Run `git diff --staged`
+   - **If there is staged output, use it. Do NOT run `git diff` (unstaged). Skip to Phase 2.**
+   - If there is no staged output, run `git diff` to check for unstaged changes
+   - If neither staged nor unstaged changes exist, inform the user and stop
 
-- Review the full conversation history — this is the primary source of intent
-- `git diff --staged` — to confirm what's actually staged; if nothing is staged, fall back to `git diff` (unstaged changes)
-
-If neither staged nor unstaged changes exist, inform the user and stop.
+Only one diff should be in scope — staged takes priority. Ignore any unstaged diff output from earlier in the conversation if staged changes exist.
 
 ### Phase 2: Analyse
 
