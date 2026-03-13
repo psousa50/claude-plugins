@@ -35,7 +35,9 @@ Create a single-line commit message following these rules:
 - Be specific: "fix login redirect loop" not "fix bug"
 - Reflect the user's intent from the conversation, not just a mechanical description of changed lines
 
-### Phase 4: Output
+### Phase 4: Output & Commit
 
-Display only the commit message, nothing else. No explanation, no alternatives.
-Do not commit or push code, only generate the message.
+1. Display only the commit message, nothing else. No explanation, no alternatives.
+2. Ask the user if they want to commit with this message.
+   - If **yes** — run `git commit -m "<message>"` (stage all tracked changes first with `git add -u` if nothing is currently staged)
+   - If **no** — stop. Do not commit.
