@@ -2,7 +2,7 @@
 description: Review a Take Home Test submission against the EE assessment rubric
 ---
 
-Review a candidate's Take Home Test submission for the Equal Experts Backend Software Engineer role.
+Review a candidate's Take Home Test submission for the Equal Experts Backend Software Engineer role. Our company only hires senior engineers — calibrate expectations accordingly.
 
 ## Setup
 
