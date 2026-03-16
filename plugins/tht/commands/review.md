@@ -68,9 +68,22 @@ Watch for concern indicators:
 - Over-engineering / unnecessary complexity
 - Large file count for a small problem
 
+## Review Mindset
+
+Before writing up your assessment, go back to the brief's requirements and verify point by point that the candidate's public API actually satisfies them. Don't assume — check method signatures against the stated interface.
+
+For each class, ask: "Does this have a single clear responsibility?" If a class is doing multiple jobs, trace the consequences — does it make the tests harder to write? Does it force complex mocking? Design problems in production code often surface as pain in the tests.
+
+For each method, ask: "Does this method do what its name says and nothing more?" Look for hidden side effects, especially in methods whose names suggest they are queries.
+
+For each piece of stored state, ask: "Is this the source of truth, or could it be derived from other data that already exists?" Redundant state is a bug waiting to happen.
+
+For each file, ask: "Is this file what it claims to be? Is it in the right place?" Don't take file names or candidate descriptions at face value.
+
 ## Important Rules
 
-- The candidate had ~90 minutes. Look for indicators of ability, not production-ready code.
+- The candidate had ~90 minutes. Look for indicators of ability, not production-ready code. However, "indicators of ability" must be calibrated to senior level — time pressure does not excuse issues a senior engineer would instinctively avoid (e.g. committing IDE files, leaving dead code, ignoring the brief's constraints, copy-pasting test setup). When in doubt, ask: "Would I expect a senior engineer to know better here, even under time pressure?" If yes, it is a genuine concern, not a minor nit.
+- Do NOT default to leniency. A borderline rating should land on the stricter side. It is better to flag a concern that turns out to be minor in a follow-up interview than to let a weak submission through unchallenged.
 - Maximum ONE "Pass with Concern" across all three areas to still recommend progressing.
 - More than one "Pass with Concern" or any Fail = do not progress.
 - The filter question is: **"Is this submission worth a further conversation with the candidate?"**
