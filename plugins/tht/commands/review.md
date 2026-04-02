@@ -117,6 +117,7 @@ Write the text for the "Feedback to share with the candidate" field in the score
 - Clearly explain the concerns
 - Specific enough to be actionable
 - 3-5 paragraphs
+- Do not reference the rubric, or use terms like "fail" or "pass with concern" — frame everything in natural language
 
 Save this section as plain text to `candidate-feedback.txt` in the repo root.
 
@@ -126,5 +127,6 @@ Write the text for the "Key Take-Aways (conclusions, pros, cons, and things to f
 - Structured as Pros / Cons / Recommendation
 - Concise bullet points for pros and cons
 - Clear hire/no-hire recommendation with brief justification
+- Do not reference the rubric, or use terms like "fail" or "pass with concern" — frame everything in natural language
 
 Save this section as plain text to `key-take-aways.txt` in the repo root.
