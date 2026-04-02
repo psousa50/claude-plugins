@@ -118,9 +118,13 @@ Write the text for the "Feedback to share with the candidate" field in the score
 - Specific enough to be actionable
 - 3-5 paragraphs
 
+Save this section as plain text to `candidate-feedback.txt` in the repo root.
+
 ### Section 3: Scorecard — Key Take-Aways
 
 Write the text for the "Key Take-Aways (conclusions, pros, cons, and things to follow up on)" field. This should be:
 - Structured as Pros / Cons / Recommendation
 - Concise bullet points for pros and cons
 - Clear hire/no-hire recommendation with brief justification
+
+Save this section as plain text to `key-take-aways.txt` in the repo root.
