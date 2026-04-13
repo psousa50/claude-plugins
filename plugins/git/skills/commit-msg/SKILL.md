@@ -1,4 +1,9 @@
-# /commit-msg
+---
+name: commit-msg
+description: Generate a single-line commit message from conversation context and git diff, then optionally commit
+---
+
+# Commit Message
 
 Generate a single-line commit message based on the conversation context, using the git diff to confirm scope.
 
