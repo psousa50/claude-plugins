@@ -116,17 +116,28 @@ Write the text for the "Feedback to share with the candidate" field in the score
 - Acknowledge what was done well
 - Clearly explain the concerns
 - Specific enough to be actionable
-- 3-5 paragraphs
+- **Short: 2-3 short paragraphs maximum.** Aim for under ~150 words total. Density over length.
 - Do not reference the rubric, or use terms like "fail" or "pass with concern" — frame everything in natural language
+
+Avoid the following — they pad the feedback without adding signal:
+- Closing or forward-looking paragraphs ("we look forward to…", "in the next round we will…", "thank you for your time"). End on the last substantive point.
+- Meta-commentary about AI tool usage. Do not praise candour, honesty, or self-awareness about AI. If AI authorship is relevant, it belongs in the Key Take-Aways follow-up list, not in candidate-facing feedback.
+- Restating the rubric, the brief, or what the task was.
+- Hedging filler ("overall", "broadly speaking", "generally").
+- Listing every positive — pick the two or three that most signal ability and move on.
 
 Save this section as plain text to `candidate-feedback.txt` in the repo root.
 
 ### Section 3: Scorecard — Key Take-Aways
 
 Write the text for the "Key Take-Aways (conclusions, pros, cons, and things to follow up on)" field. This should be:
-- Structured as Pros / Cons / Recommendation
-- Concise bullet points for pros and cons
+- Structured as **Pros / Cons / Things to follow up on / Recommendation**
+- Concise bullet points
 - Clear hire/no-hire recommendation with brief justification
 - Do not reference the rubric, or use terms like "fail" or "pass with concern" — frame everything in natural language
+
+Bucket guidance:
+- **Cons** are flaws in the submission itself (wrong type choice, missing test boundary, coupled design, etc.).
+- **Things to follow up on** are open questions for the next interviewer to verify — including any AI tool usage disclosure. AI authorship percentage is NOT a con; it is a thing to probe at stage 2. Disclosed AI usage is the behaviour we want, not a strike against the candidate.
 
 Save this section as plain text to `key-take-aways.txt` in the repo root.
