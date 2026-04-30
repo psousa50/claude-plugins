@@ -128,16 +128,33 @@ Avoid the following — they pad the feedback without adding signal:
 
 Save this section as plain text to `candidate-feedback.txt` in the repo root.
 
-### Section 3: Scorecard — Key Take-Aways
+### Section 3: Reviewer Notes (private, not for the scorecard)
 
-Write the text for the "Key Take-Aways (conclusions, pros, cons, and things to follow up on)" field. This should be:
+Write a longer Pros / Cons / Things to follow up on list, **for the reviewer's own use** — to brief themselves before the next interview round and to keep the depth that gets stripped out of the scorecard summary. This is the working scaffold, not a candidate-facing artefact.
+
 - Structured as **Pros / Cons / Things to follow up on / Recommendation**
-- Concise bullet points
-- Clear hire/no-hire recommendation with brief justification
+- One sentence per bullet, with enough context (file:line where useful, why the issue matters) to brief a stage-2 interviewer cold
 - Do not reference the rubric, or use terms like "fail" or "pass with concern" — frame everything in natural language
 
 Bucket guidance:
-- **Cons** are flaws in the submission itself (wrong type choice, missing test boundary, coupled design, etc.).
-- **Things to follow up on** are open questions for the next interviewer to verify — including any AI tool usage disclosure. AI authorship percentage is NOT a con; it is a thing to probe at stage 2. Disclosed AI usage is the behaviour we want, not a strike against the candidate.
+- **Cons** are flaws in the submission itself (wrong type choice, missing test boundary, coupled design, etc.). **Order them by importance, most material first.** Concrete bugs (something that produces wrong behaviour or a crash on a plausible input) come before defects that require a future drift to bite, which come before mitigated trade-offs and stylistic concerns. Same logic applies to Pros — lead with the most signal-bearing strengths.
+- **Things to follow up on** are open questions the next interviewer might want to explore — including any AI tool usage disclosure. AI authorship percentage is NOT a con; it is a thing to probe at stage 2. Disclosed AI usage is the behaviour we want, not a strike against the candidate.
+
+Tone for the Recommendation and follow-ups:
+- **Suggest, do not mandate.** The next interviewer decides their own approach. Use phrasing like "could be useful to explore", "may be worth checking", "worth discussing if time allows". Avoid "must verify", "should probe", "use stage 2 to…", or any imperative that tells the next interviewer what to do.
+- Keep the Recommendation to **2-3 sentences**. State the verdict, name the gap area in a phrase, optionally surface angles for the next round. No calibration jargon ("senior", "indicators of ability"), no restating the rubric.
+- **Relative-quality calibration is welcome when it is genuinely true.** A line like "one of the strongest submissions seen recently" or "weakest submission this quarter" is high-signal for downstream interviewers and changes how they prepare. Only include it when it actually applies — it has to mean something. If the submission is solidly average, say nothing on this dimension.
+
+Save this section as plain text to `reviewer-notes.txt` in the repo root.
+
+### Section 4: Scorecard — Key Take-Aways
+
+Write the text for the "Key Take-Aways (conclusions, pros, cons, and things to follow up on)" field. **This is the short, scorecard-bound version of the reviewer notes** — same structure, ruthlessly trimmed.
+
+- Same four headings: **Pros / Cons / Things to follow up on / Recommendation**
+- Aim for **3-5 bullets per section, max one short sentence per bullet.** Whole document under ~150 words.
+- Drop file:line references and explanatory clauses — they belong in the reviewer notes, not the scorecard
+- Recommendation is one sentence (e.g. "Progress." / "Do not progress.")
+- Do not reference the rubric, or use terms like "fail" or "pass with concern" — frame everything in natural language
 
 Save this section as plain text to `key-take-aways.txt` in the repo root.
