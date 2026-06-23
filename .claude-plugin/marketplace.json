@@ -12,26 +12,22 @@
     {
       "name": "codebase-analyzer",
       "source": "./plugins/codebase-analyzer",
-      "description": "Analyzes a project and generates CLAUDE.md and skills with project knowledge",
-      "version": "1.0.0"
+      "description": "Analyzes a project and generates CLAUDE.md and skills with project knowledge"
     },
     {
       "name": "git",
       "source": "./plugins/git",
-      "description": "Git workflow commands",
-      "version": "1.0.0"
+      "description": "Git workflow commands"
     },
     {
       "name": "develop",
       "source": "./plugins/develop",
-      "description": "Development workflow commands",
-      "version": "1.0.0"
+      "description": "Development workflow commands"
     },
     {
       "name": "tht",
       "source": "./plugins/tht",
-      "description": "Review Equal Experts Take Home Test submissions",
-      "version": "1.0.0"
+      "description": "Review Equal Experts Take Home Test submissions (Backend and Gen AI Engineer roles)"
     }
   ]
 }

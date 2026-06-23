@@ -1,12 +1,13 @@
 ---
-description: Review a Take Home Test submission against the EE assessment rubric
+name: backend-review
+description: Review an Equal Experts Backend Software Engineer take-home test submission against the EE assessment rubric. Use when reviewing a candidate's backend / general software engineering take-home test (non Gen AI), assessing a coding exercise submission, or scoring a THT for a backend role.
 ---
 
 Review a candidate's Take Home Test submission for the Equal Experts Backend Software Engineer role. Our company only hires senior engineers — calibrate expectations accordingly.
 
 ## Setup
 
-1. Read the assessment rubric at `${CLAUDE_PLUGIN_ROOT}/references/rubric.md` — this defines the exact pass/fail criteria
+1. Read the assessment rubric at `references/rubric.md` in this skill's directory — this defines the exact pass/fail criteria
 2. Read the README.md in the current repo to understand:
    - The problem statement and requirements
    - Any candidate assumptions or notes
