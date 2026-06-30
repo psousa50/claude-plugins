@@ -47,6 +47,31 @@ Completion calibration: `SimpleChunker` + real `add_documents` + some evaluation
 8. Read every test file, distinguishing candidate-written tests from the provided stubs
 9. Check the README / notes for the candidate's written answers to the three questions and any assumptions or AI-usage disclosures
 
+## Run It — Mandatory Smoke Test (before rating Gen AI / RAG)
+
+A static code review of a RAG submission is **not sufficient** and has repeatedly produced wrong verdicts: a polished pipeline can return zero correct answers, and the candidate's own reported results can be wrong. **You must run the pipeline against the brief's canonical questions and read the retrieved context before rating Gen AI / RAG.** Polish is not function.
+
+Procedure:
+1. Ensure Ollama is running with the required models pulled — `nomic-embed-text` plus the model in `config.py` (often `llama3.2`, sometimes `qwen2.5:7b`). If the candidate switched the core pipeline to a paid API (e.g. OpenAI in `config.py`), either supply a key or temporarily point `LLM_MODEL` / `EMBEDDING_MODEL` back to the Ollama defaults to exercise retrieval — and note the deviation.
+2. **Delete any stale vector store first** (`rm -rf milvus.db`) — some submissions reuse a persisted collection across runs and contaminate results.
+3. Run the driver on the brief's example questions — e.g. `poetry run python -m src.main`. The **scaffold ships exactly two canonical questions: "What work did Equal Experts do for IG Group?" and "What was demonstrated in the Forrester study?"** (read them from the README / baseline `main.py` — do not assume; a candidate may have added or changed them). Count how many are answered vs return "I cannot answer". Then also test any questions the candidate added, plus at least one **named-entity stress question whose case study is in the corpus** (e.g. "How did Equal Experts help HMRC?") — proper-noun retrieval is the failure mode worth stressing.
+4. **Inspect retrieval, not just the answers.** Use `references/retrieval_probe.py` (copy into the repo root, run with `PYTHONPATH=. poetry run python retrieval_probe.py`) to print the top-k retrieved chunks per question. Confirm the *relevant* case-study content is actually present — not headings, "Full case study" boilerplate, or related-links navigation.
+
+Interpret what you see:
+- **Answers most questions, relevant chunks retrieved** → retrieval works; rate on sophistication.
+- **Refuses, and retrieval returned irrelevant / boilerplate chunks** → genuine retrieval failure (a floor miss), no matter how clean the code looks.
+- **Refuses, but the right chunk *was* retrieved** → a prompt/generation issue, milder than a retrieval failure. Only chunk-level inspection separates these — a refusal alone does not.
+
+### The retrieval anti-pattern that hides behind a clean pipeline
+The most common silent failure is **`metric_type="IP"` (inner product) over un-normalised embeddings**. `nomic-embed-text` returns vectors with norm ~18, not 1, so inner product ranks by *magnitude*, not meaning — the same high-magnitude chunk (often boilerplate) wins for every query. Check `milvus_store.py` for the metric, and check whether the candidate normalises embeddings or switched to `COSINE`. If it is `IP` + un-normalised, retrieval is almost certainly broken even though every line looks reasonable. The fix is one line (cosine, or L2-normalise the vectors); not making it — and not *noticing* — is the failure.
+
+Named anti-patterns to grep/check for:
+- `metric_type="IP"` + un-normalised embeddings → magnitude-dominated retrieval (silent failure).
+- `create_collection` that reuses or appends to an existing collection across runs → contaminated before/after comparison and accumulating duplicates.
+- Named-entity questions (HMRC, "IG Group") failing while topical ones (Forrester) succeed → dense-only retrieval can't match proper nouns; the fix is hybrid / keyword (BM25) search. This is a ceiling technique, not required to pass, but name the gap.
+- LLM-as-judge that returns a default score (e.g. `0.0`) on a parse failure or in an `except` → silent zeros make a low score uninterpretable.
+- Boilerplate/heading chunks ("Full case study", `####` headings, related-links nav) surviving into retrieved context → weak or absent data cleaning, even if a "boilerplate filter" is claimed.
+
 ## Evaluation
 
 Assess the submission against each of the three rubric areas. For each area, determine a rating of Pass, Pass with Concern, or Fail.
@@ -89,6 +114,8 @@ Watch for concern indicators:
 - Only generic metrics with no thought about fit
 - Poor test naming, unclear tests, incomplete assertions, brittle tests that assert exact LLM output
 - Dependency on a live endpoint (Ollama) is NOT in itself a warning
+- **Reported results are claims, not evidence.** Committed `evaluation_results*.json` files, printed scores, and statements in `ANSWERS.md` ("AdvancedChunker wins on every axis") are unverified until you reproduce them. A contradiction between a candidate's stated conclusion and what the live run actually shows is itself a finding — it means the evaluation was not read or not trusted.
+- **A narrow, candidate-chosen evaluation set can mask retrieval failure.** Four hand-picked questions that happen to retrieve well will look fine while the brief's own example questions fail. Always test the canonical questions yourself (see "Run It"), not only the candidate's set.
 
 Nice to see (not required to pass): domain-tailored metrics, a curated evaluation set over the case studies, load/robustness testing against the API.
 
@@ -118,7 +145,9 @@ Before writing up your assessment, go back to the brief and verify point by poin
 
 For each pipeline stage, ask: "Is this decision justified, or is it a default the candidate never examined?" A senior Gen AI engineer chooses a chunk size for a reason; they don't accept 1000/200 because a tutorial used it.
 
-For the retrieval step, ask: "Has the candidate verified retrieval actually returns relevant context, or only assumed it?" Retrieval quality is the most common silent failure in RAG — look for evidence they measured it, not just the generation.
+For the retrieval step, ask: "Has the candidate verified retrieval actually returns relevant context, or only assumed it?" Retrieval quality is the most common silent failure in RAG — look for evidence they measured it, not just the generation. **Do not take this on trust — run the smoke test and read the retrieved chunks yourself (see "Run It").**
+
+For the written answers, ask: "Do they reflect what this candidate's own pipeline actually does?" Comprehensive, polished answers that recommend techniques (hybrid search, re-ranking, metadata filtering) the candidate never measured — on a pipeline that does not retrieve correctly — read as generic/AI-drafted and disconnected from the work. The disconnect is the tell, not the polish. (AI authorship itself is fine and is a stage-2 follow-up, never a candidate-facing point — but do not credit the candidate with understanding a likely-AI-authored document demonstrates.)
 
 For the evaluation, ask: "Does this metric measure something that matters for this problem, and did a result ever change a decision?" An evaluation that never drove iteration is a box-ticking exercise.
 
@@ -131,7 +160,7 @@ For each file, ask: "Is this file what it claims to be? Is it in the right place
 ## Important Rules
 
 - The candidate had limited time. Look for indicators of ability, not production-ready code. However, "indicators of ability" must be calibrated to senior level — time pressure does not excuse issues a senior engineer would instinctively avoid (e.g. leaving the fixed-text stub in place, shipping code that fails the provided mypy/ruff config, leaving an evaluation that drives nothing, dead code). When in doubt, ask: "Would I expect a senior Gen AI engineer to know better here, even under time pressure?" If yes, it is a genuine concern, not a minor nit.
-- Judge against what the scaffold asked for, in order: `SimpleChunker` + real `add_documents` (the floor), then evaluation, then `AdvancedChunker` + re-evaluation (the ceiling). Not reaching the ceiling is not a fail; a missing or stubbed floor, or no evaluation at all, is.
+- Judge against what the scaffold asked for, in order: `SimpleChunker` + real `add_documents` **that actually retrieves and answers the brief's questions** (the floor), then evaluation, then `AdvancedChunker` + re-evaluation, hybrid/entity retrieval (the ceiling). Not reaching the ceiling is not a fail; a missing or stubbed floor, **a pipeline that answers none/almost none of the canonical questions when run**, or no evaluation at all, is. A ceiling miss (e.g. no hybrid search, so entity questions fail) is forgivable; a floor miss — especially one the candidate reports as a success — is not.
 - Do NOT default to leniency. A borderline rating should land on the stricter side. It is better to flag a concern that turns out to be minor in a follow-up interview than to let a weak submission through unchallenged.
 - Maximum ONE "Pass with Concern" across all three areas to still recommend progressing.
 - More than one "Pass with Concern" or any Fail = do not progress.
@@ -187,7 +216,7 @@ Write a longer Pros / Cons / Things to follow up on list, **for the reviewer's o
 
 Bucket guidance:
 - **Cons** are flaws in the submission itself (unexamined chunking, retrieval never measured, evaluation that drives nothing, coupled pipeline, committed secrets, etc.). **Order them by importance, most material first.** Concrete defects (wrong output, hallucination-inviting prompt, committed key) come before defects that require a future drift to bite, which come before mitigated trade-offs and stylistic concerns. Same logic applies to Pros — lead with the most signal-bearing strengths.
-- **Things to follow up on** are open questions the next interviewer might want to explore — including any AI tool usage disclosure. AI authorship percentage is NOT a con; it is a thing to probe at stage 2. Disclosed AI usage is the behaviour we want, not a strike against the candidate. Good Gen-AI-specific angles: how they would evaluate RAG quality systematically, how they would scale to 10M+ documents with real-time updates, how they would prevent hallucinations, what production monitoring they would add.
+- **Things to follow up on** are open questions the next interviewer might want to explore — including any AI tool usage disclosure. AI authorship percentage is NOT a con; it is a thing to probe at stage 2. Disclosed AI usage is the behaviour we want, not a strike against the candidate. Good Gen-AI-specific angles: how they would evaluate RAG quality systematically, how they would scale to 10M+ documents with real-time updates, how they would prevent hallucinations, what production monitoring they would add. Keep this section even when the verdict is "do not progress" — the items still serve the calibration discussion (e.g. the #interviews-dev-global check when there is more than one area of concern) and document what a borderline re-review would probe; frame them as what *would* be worth exploring, not as a promise of a next round.
 
 Tone for the Recommendation and follow-ups:
 - **Suggest, do not mandate.** The next interviewer decides their own approach. Use phrasing like "could be useful to explore", "may be worth checking", "worth discussing if time allows". Avoid "must verify", "should probe", "use stage 2 to…", or any imperative that tells the next interviewer what to do.
@@ -203,7 +232,7 @@ Write the text for the "Key Take-Aways (conclusions, pros, cons, and things to f
 - Same four headings: **Pros / Cons / Things to follow up on / Recommendation**
 - Aim for **3-5 bullets per section, max one short sentence per bullet.** Whole document under ~150 words.
 - Drop file:line references and explanatory clauses — they belong in the reviewer notes, not the scorecard
-- Recommendation is one sentence (e.g. "Progress." / "Do not progress.")
+- Recommendation is one or two short sentences: the verdict, and when it is "Do not progress" a brief clause naming the decisive reason so the verdict is not bare (e.g. "Do not progress — retrieval was never measured against the real pipeline and is reported as working.")
 - Do not reference the rubric, or use terms like "fail" or "pass with concern" — frame everything in natural language
 
 Save this section as plain text to `key-take-aways.txt` in the repo root.
